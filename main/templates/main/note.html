@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<div class="container">
+		<div class="todos">
+
+			<div class="back">
+				<a href="{% url 'home' %}" class="back__btn"><i class="fa-solid fa-arrow-left"></i></a>
+			</div>
+			<div class="edit">
+				<a href="{% url 'edit' note.id %}" class="edit__btn"><i class="fa-solid fa-pen-to-square"></i></a>
+			</div>
+			<div class="remove">
+				<form action="{% url 'remove' note.id %}" method="POST">
+					{% csrf_token %}
+					<button href="{% url 'add_note' %}" class="remove__btn"><i class="fa-solid fa-trash-can"></i></button>
+				</form>
+			</div>
+
+			<h1 class="text-white text-break">{{ note.title }}</h1> <hr>
+			<p class="text-white text-break">{{ note.text }}</p>
+		</div>
+	</div>
+{% endblock %}

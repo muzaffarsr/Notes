@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<div class="container">
+		<div class="todos">
+
+			<div class="add">
+				<a href="{% url 'add_note' %}" class="add__btn"><i class="fa-solid fa-plus"></i></a>
+			</div>
+
+			{% if notes %}
+				<div class="todos__container">
+					{% for n in notes %}
+						<div class="todo">
+							<h4 class="title"><a href="{% url 'note' n.id %}">{{ n.title }}</a></h4>
+							<p class="text"><a href="{% url 'note' n.id %}">{{ n.text }}</a></p>
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<h1 class="text-white text-center">No Notes Yet! <a href="{% url 'add_note' %}">Create Note</a></h1>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
